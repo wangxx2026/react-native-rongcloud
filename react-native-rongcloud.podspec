@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   # ...
-  # s.dependency "..."
+  s.dependency 'RongCloudIM/IMKit', '~> 4.0.3.3'
+  s.dependency 'RongCloudIM/IMLib', '~> 4.0.3.3'
 end
 

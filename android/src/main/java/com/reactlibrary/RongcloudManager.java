@@ -9,7 +9,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 
 public class RongcloudManager extends SimpleViewManager<View> {
 
-    public static final String REACT_CLASS = "Rongcloud";
+    public static final String REACT_CLASS = "RCConversationList";
 
     @Override
     public String getName() {
