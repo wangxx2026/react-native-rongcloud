@@ -65,11 +65,14 @@ repositories {
     }
     google()
     jcenter()
+    maven {url  "https://dl.bintray.com/rongcloud/maven"}
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    compileOnly 'cn.rongcloud.sdk:im_lib:4.0.0.1'
+    compileOnly 'cn.rongcloud.sdk:im_kit:4.0.0.1'
 }
 
 def configureReactNativePom(def pom) {

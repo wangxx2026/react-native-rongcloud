@@ -1,7 +1,5 @@
 import { requireNativeComponent } from 'react-native';
 
-const RCConversationList = requireNativeComponent('RCConversationList', null);
+const RongcloudManager = requireNativeComponent('RongcloudManager', null);
 
-export {
-    RCConversationList
-};
+export default RongcloudManager;

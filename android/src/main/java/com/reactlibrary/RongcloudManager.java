@@ -1,15 +1,20 @@
 package com.reactlibrary;
 
+import android.app.Fragment;
+import android.net.Uri;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.widget.AppCompatCheckBox;
-
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
+import io.rong.imkit.fragment.ConversationListFragment;
+import io.rong.imlib.model.Conversation;
+
 public class RongcloudManager extends SimpleViewManager<View> {
 
-    public static final String REACT_CLASS = "RCConversationList";
+    public static final String REACT_CLASS = "RongcloudManager";
 
     @Override
     public String getName() {
@@ -18,9 +23,12 @@ public class RongcloudManager extends SimpleViewManager<View> {
 
     @Override
     public View createViewInstance(ThemedReactContext c) {
-        // TODO: Implement some actually useful functionality
-        AppCompatCheckBox cb = new AppCompatCheckBox(c);
-        cb.setChecked(true);
-        return cb;
+
+        View placeholder = new View(c);
+        placeholder.setTag(R.id.fragmentcontainer);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        placeholder.setLayoutParams(params);
+        return placeholder;
     }
 }

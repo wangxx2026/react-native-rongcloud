@@ -13,11 +13,13 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RongcloudPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Arrays.<NativeModule>asList(new RongcloudModule(reactContext));
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(new RongcloudManager());
+        return Arrays.<ViewManager>asList(
+                new RongcloudManager()
+        );
     }
 }

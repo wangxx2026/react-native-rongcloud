@@ -1,7 +1,7 @@
 {
   "name": "react-native-rongcloud",
   "title": "React Native Rongcloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "rongcloud im for React-Native",
   "main": "index.js",
   "files": [
