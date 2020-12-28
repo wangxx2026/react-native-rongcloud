@@ -12,9 +12,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.facebook.react.ReactActivity;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import com.google.gson.Gson;
 import com.reactlibrary.bean.IMUserInfo;
 import com.reactlibrary.tools.RongCloudPageTools;
@@ -44,9 +46,8 @@ public class RongcloudModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void connectIM(String token) {
-        RongCloudPageTools.getInstance().addFragmentContainer(getCurrentActivity());
-        RongCloudTools.connectIM(getCurrentActivity(), token);
+    public void connectIM(String token, Promise promise) {
+        RongCloudTools.connectIM(getCurrentActivity(), token, promise);
     }
 
     @ReactMethod
@@ -55,7 +56,7 @@ public class RongcloudModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setUserInfo(String userInfoJson) {
+    public void setUserInfo(ReadableMap userInfoJson) {
         RongCloudTools.setUserInfo(userInfoJson);
     }
 

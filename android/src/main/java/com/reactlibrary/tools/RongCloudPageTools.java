@@ -23,6 +23,8 @@ import io.rong.imlib.model.Conversation;
  */
 public class RongCloudPageTools {
 
+    private ConversationListFragment conversationListFragment;
+
     private RongCloudPageTools() {
     }
 
@@ -45,6 +47,19 @@ public class RongCloudPageTools {
                     realContainer = null;
                 }
                 final View imPlaceholder = findIMPlaceholder((ViewGroup) activity.findViewById(android.R.id.content));
+                addFragmentContainer(activity, imPlaceholder);
+            }
+        });
+    }
+
+    public void addFragmentContainer(final Activity activity, final View imPlaceholder) {
+        GlobalTools.mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (realContainer != null) {
+                    realContainer.removeAllViews();
+                    realContainer = null;
+                }
                 View content = activity.getWindow().getDecorView().findViewById(android.R.id.content);
                 realContainer = new FrameLayout(content.getContext());
                 realContainer.setId(R.id.fragmentcontainer);
@@ -55,6 +70,7 @@ public class RongCloudPageTools {
                 imPlaceholder.getLocationInWindow(locOnWindow);
                 realContainer.setX(locOnWindow[0]);
                 realContainer.setY(locOnWindow[1]);
+                showMessage(activity);
             }
         });
     }
@@ -66,13 +82,18 @@ public class RongCloudPageTools {
                 if (realContainer != null) {
                     realContainer.setVisibility(isShow ? View.VISIBLE : View.GONE);
                 }
+                if (conversationListFragment != null){
+                    conversationListFragment.getView().setVisibility(isShow ? View.VISIBLE : View.GONE);
+                }
             }
         });
     }
 
     public void showMessage(Activity activity) {
+        View imPlaceholder = findIMPlaceholder((ViewGroup) activity.findViewById(android.R.id.content));
+        if (imPlaceholder == null) return;
         final String packageName = activity.getApplicationInfo().packageName;
-        ConversationListFragment conversationListFragment = new ConversationListFragment();
+        conversationListFragment = new ConversationListFragment();
         Uri uri = Uri.parse("rong://" + packageName).buildUpon()
                 .appendPath("conversationlist")
                 .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示

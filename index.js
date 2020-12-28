@@ -7,8 +7,8 @@ const RongcloudManager = requireNativeComponent('RongcloudManager', null);
 
 export default RongcloudManager;
 
-export const showHideContainer = () => {
-    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.showHideContainer && NativeModules.RongcloudModule.showHideContainer(false);
+export const showHideContainer = (isShow) => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.showHideContainer && NativeModules.RongcloudModule.showHideContainer(isShow);
 }
 
 export const connectIM = (token) => {
@@ -24,5 +24,10 @@ export const eAccountLogin = () => {
 }
 
 export const preGetToken = () => {
-    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.preGetToken && NativeModules.RongcloudModule.preGetToken();
+    if ( !NativeModules.RongcloudModule || !NativeModules.RongcloudModule.preGetToken ) return console.log('preGetToken not defined');
+    return NativeModules.RongcloudModule.preGetToken();
+}
+
+export const setUserInfo = (userInfo) => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.setUserInfo && NativeModules.RongcloudModule.setUserInfo(userInfo);
 }

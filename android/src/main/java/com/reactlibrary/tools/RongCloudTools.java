@@ -6,9 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.ReadableMap;
 import com.google.gson.Gson;
 import com.reactlibrary.R;
 import com.reactlibrary.bean.IMUserInfo;
+
+import java.util.HashMap;
 
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
@@ -39,7 +43,7 @@ public class RongCloudTools {
         RongIM.getInstance().logout();
     }
 
-    public static void connectIM(final Activity activity, String token) {
+    public static void connectIM(final Activity activity, String token, final Promise promise) {
         // 防止有连接没断开
         disconnect();
         RongIM.connect(token, new RongIMClient.ConnectCallback() {
@@ -54,7 +58,9 @@ public class RongCloudTools {
                 //连接成功
                 Log.i(TAG, "onSuccess: " + s);
                 RongCloudPageTools.getInstance().showMessage(activity);
-                setUserInfo(new Gson().toJson(new IMUserInfo("路西法", "http://picd84.huitu.com/res/20161026/20161026001113555800_1.jpg")));
+                if (promise != null){
+                    promise.resolve(s);
+                }
             }
 
             @Override
@@ -64,13 +70,18 @@ public class RongCloudTools {
                     //从 APP 服务获取新 token，并重连
                 } else {
                     //无法连接 IM 服务器，请根据相应的错误码作出对应处理
+                    if (promise != null){
+                        promise.reject(String.valueOf(errorCode.getValue()), errorCode.name());
+                    }
                 }
             }
         });
     }
 
-    public static void setUserInfo(String userInfoJson) {
-        IMUserInfo imUserInfo = new Gson().fromJson(userInfoJson, IMUserInfo.class);
+    public static void setUserInfo(ReadableMap userInfoMap) {
+        HashMap user = userInfoMap.toHashMap();
+
+        IMUserInfo imUserInfo = new IMUserInfo((String) user.get("nickname"), (String) user.get("avatar"));
         RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
             @Override
             public UserInfo getUserInfo(String userId) {
