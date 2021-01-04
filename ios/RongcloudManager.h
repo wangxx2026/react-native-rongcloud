@@ -1,19 +1,7 @@
-//
-//  RongcloudManager.h
-//  Pods
-//
-//  Created by hinjin on 2020/11/30.
-//
-
-#ifndef RongcloudManager_h
-#define RongcloudManager_h
-
-// 融云SDK start
+#import <React/RCTViewManager.h>
 #import <RongIMKit/RongIMKit.h>
-// 融云SDK end
-#import <React/RCTBridgeModule.h>
-@interface RongcloudManager : NSObject <RCTBridgeModule>
-
-
+#import "RCDChatListViewController.h"
+//#import "RCCustomConversationListViewController.h"
+@interface RongcloudManager : RCTViewManager
+@property(nonatomic, strong)RCDChatListViewController *conversationListVC;
 @end
-#endif /* RongcloudManager_h */

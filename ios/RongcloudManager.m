@@ -1,44 +1,32 @@
-//
-//  RongcloudManager.m
-//  react-native-rongcloud
-//
-//  Created by hinjin on 2020/11/30.
-//
-
-#import <React/RCTBridgeModule.h>
-// 融云SDK start
-#import <RongIMKit/RongIMKit.h>
-#import <RongIMLib/RongIMLib.h>
-// 融云SDK end
-#import <React/RCTLog.h>
-// RongcloudManager.h
 #import "RongcloudManager.h"
-
+#import <RongIMKit/RongIMKit.h>
+#import "RCDChatListViewController.h"
 @implementation RongcloudManager
 
-// To export a module named CalendarManager
-RCT_EXPORT_MODULE();
+RCT_EXPORT_MODULE(ConversationList)
 
-RCT_EXPORT_METHOD(initIMSDK:(NSString *)token)
+- (UIView *)view
 {
-  RCTLogInfo(@"initIMSDK : token =>  %@", token);
-    [[RCIM sharedRCIM] initWithAppKey:@"qd46yzrfqup5f"];
+    UIView *view = [[UIView alloc] init];
+    self.conversationListVC = [[RCDChatListViewController alloc] initWithDisplayConversationTypes:@[@(ConversationType_PRIVATE),@(ConversationType_GROUP),@(ConversationType_SYSTEM)] collectionConversationType:@[@(ConversationType_SYSTEM)]];
 
-    [[RCIM sharedRCIM] connectWithToken:token
-                               dbOpened:^(RCDBErrorCode code) {}
-                                success:^(NSString *userId) {
-        RCTLogInfo(@"connectWithToken success %@", userId);
-    }
-                                  error:^(RCConnectErrorCode status) {
-        NSLog(@"connectWithToken error %ld", (long)status);
-    }];
-}
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:conversationListViewController];
+//        self.window.rootViewController = navigationController;
 
-RCT_EXPORT_METHOD(getConversationList)
-{
-    NSArray *conversationList = [[RCIMClient sharedRCIMClient] getConversationList:@[@(ConversationType_PRIVATE)]];
+//    conversationListViewController
+    [view addSubview:self.conversationListVC.view];
+    [self reloadData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"refreshChatList" object:nil];
+    return view;
 }
+
+-(void)reloadData{
+    [self.conversationListVC refreshConversationTableViewIfNeeded];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end
-
-

@@ -1,11 +1,16 @@
 import { requireNativeComponent } from 'react-native';
 import {
     NativeModules,
+    Platform
 } from "react-native";
 
-const RongcloudManager = requireNativeComponent('RongcloudManager', null);
+const RongcloudManager = requireNativeComponent(Platform.OS == 'ios' ? 'ConversationList' : 'RongcloudManager', null);
 
 export default RongcloudManager;
+
+export const initIMSDK = (appId) => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.initIMSDK && NativeModules.RongcloudModule.initIMSDK(appId);
+}
 
 export const showHideContainer = (isShow) => {
     return NativeModules.RongcloudModule && NativeModules.RongcloudModule.showHideContainer && NativeModules.RongcloudModule.showHideContainer(isShow);
@@ -13,6 +18,14 @@ export const showHideContainer = (isShow) => {
 
 export const connectIM = (token) => {
     return NativeModules.RongcloudModule && NativeModules.RongcloudModule.connectIM && NativeModules.RongcloudModule.connectIM(token);
+}
+
+export const disconnectIM = () => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.disconnectIM && NativeModules.RongcloudModule.disconnectIM();
+}
+
+export const startConversation = (targetId, targetName) => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.startConversation && NativeModules.RongcloudModule.startConversation(targetId, targetName);
 }
 
 export const isPreLoginResultValid = () => {
