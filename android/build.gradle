@@ -73,6 +73,8 @@ dependencies {
     implementation 'com.facebook.react:react-native:+'  // From node_modules
     compileOnly 'cn.rongcloud.sdk:im_lib:4.0.0.1'
     compileOnly 'cn.rongcloud.sdk:im_kit:4.0.0.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2';
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2';
 }
 
 def configureReactNativePom(def pom) {

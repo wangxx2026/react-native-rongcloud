@@ -82,7 +82,7 @@ public class RongCloudPageTools {
                 if (realContainer != null) {
                     realContainer.setVisibility(isShow ? View.VISIBLE : View.GONE);
                 }
-                if (conversationListFragment != null){
+                if (conversationListFragment != null && conversationListFragment.getView() != null){
                     conversationListFragment.getView().setVisibility(isShow ? View.VISIBLE : View.GONE);
                 }
             }

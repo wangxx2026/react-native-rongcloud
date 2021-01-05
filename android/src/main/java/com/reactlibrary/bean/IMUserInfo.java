@@ -11,10 +11,11 @@ public class IMUserInfo {
     }
 
     public IMUserInfo(String nickName, String avatar) {
-        this.nickName = nickName;
+        this.nickname = nickName;
         this.avatar = avatar;
     }
 
-    public String nickName = "";
+    public String nickname = "";
     public String avatar = "";
+    public String id = "";
 }

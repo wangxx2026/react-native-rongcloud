@@ -2,9 +2,13 @@ package com.reactlibrary.tools;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.lifecycle.LiveData;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableMap;
@@ -18,6 +22,12 @@ import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.UserInfo;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.reactlibrary.tools.GlobalTools.getUserInfoService;
 
 /**
  * @author Army
@@ -85,16 +95,48 @@ public class RongCloudTools {
         RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
             @Override
             public UserInfo getUserInfo(String userId) {
-                // 执行异步请求逻辑方法
-//                UserInfo userInfo = new UserInfo();
-//                return userInfo;
+                updateUserInfo(userId);
                 return null;
             }
 
         }, true);
-        UserInfo userInfo = new UserInfo(RongIM.getInstance().getCurrentUserId(), imUserInfo.nickName,
+        UserInfo userInfo = new UserInfo(RongIM.getInstance().getCurrentUserId(), imUserInfo.nickname,
                 Uri.parse(imUserInfo.avatar));
         RongIM.getInstance().refreshUserInfoCache(userInfo);
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param userId
+     */
+    public static void updateUserInfo(final String userId) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                getUserInfoService().getUserInfo(userId).enqueue(new Callback<HttpData<IMUserInfo>>(){
+
+                    @Override
+                    public void onResponse(Call<HttpData<IMUserInfo>> call, Response<HttpData<IMUserInfo>> response) {
+                        HttpData<IMUserInfo> data = response.body();
+                        if (data != null && data.getStatus() == 0){
+                            IMUserInfo imUserInfo = data.getData();
+                            UserInfo userInfo = new UserInfo(userId, imUserInfo.nickname,
+                                    Uri.parse(imUserInfo.avatar));
+                            RongIM.getInstance().refreshUserInfoCache(userInfo);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<HttpData<IMUserInfo>> call, Throwable t) {
+
+                    }
+                });
+            }
+        };
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(runnable);
     }
 
     public static void startConversation(Activity activity, String targetId, String targetName) {

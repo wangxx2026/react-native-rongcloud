@@ -46,8 +46,23 @@ public class RongcloudModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void initIMSDK(String appKey){
+        RongIM.init(getReactApplicationContext(), appKey);
+    }
+
+    @ReactMethod
     public void connectIM(String token, Promise promise) {
         RongCloudTools.connectIM(getCurrentActivity(), token, promise);
+    }
+
+    @ReactMethod
+    public void disconnectIM(){
+        RongIM.getInstance().disconnect();
+    }
+
+    @ReactMethod
+    public void logout(){
+        RongIM.getInstance().logout();
     }
 
     @ReactMethod
