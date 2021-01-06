@@ -60,6 +60,7 @@ public class RongCloudPageTools {
                     realContainer.removeAllViews();
                     realContainer = null;
                 }
+                if(imPlaceholder == null) return;
                 View content = activity.getWindow().getDecorView().findViewById(android.R.id.content);
                 realContainer = new FrameLayout(content.getContext());
                 realContainer.setId(R.id.fragmentcontainer);

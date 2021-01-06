@@ -24,6 +24,10 @@ export const disconnectIM = () => {
     return NativeModules.RongcloudModule && NativeModules.RongcloudModule.disconnectIM && NativeModules.RongcloudModule.disconnectIM();
 }
 
+export const logoutIM = () => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.logoutIM && NativeModules.RongcloudModule.logoutIM();
+}
+
 export const startConversation = (targetId, targetName) => {
     return NativeModules.RongcloudModule && NativeModules.RongcloudModule.startConversation && NativeModules.RongcloudModule.startConversation(targetId, targetName);
 }

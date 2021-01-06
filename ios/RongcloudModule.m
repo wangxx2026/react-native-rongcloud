@@ -66,6 +66,10 @@ RCT_EXPORT_METHOD(disconnectIM){
     [[RCIM sharedRCIM] disconnect:YES];
 }
 
+RCT_EXPORT_METHOD(logoutIM){
+    [[RCIM sharedRCIM] logout];
+}
+
 RCT_EXPORT_METHOD(getConversationList)
 {
     NSArray *conversationList = [[RCIMClient sharedRCIMClient] getConversationList:@[@(ConversationType_PRIVATE)]];
