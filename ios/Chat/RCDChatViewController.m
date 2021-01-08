@@ -58,6 +58,7 @@ static const char *kRealTimeLocationStatusViewKey = "kRealTimeLocationStatusView
 
     ///注册自定义测试消息Cell
     self.enableSaveNewPhotoToLocalSystem = YES;
+    self.displayUserNameInCell = NO;
     [self notifyUpdateUnreadMessageCount];
 
     [self addNotifications];
@@ -68,6 +69,9 @@ static const char *kRealTimeLocationStatusViewKey = "kRealTimeLocationStatusView
     [self insertMessageDemo];
     [self addEmoticonTabDemo];
     [self setupChatBackground];
+    
+    //清理会话列表页的角标
+    [[NSNotificationCenter defaultCenter] postNotificationName:RCDGroupClearMessageKey object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -193,6 +197,7 @@ static const char *kRealTimeLocationStatusViewKey = "kRealTimeLocationStatusView
         [self setRightNavigationItems];
     });
 }
+
 
 - (void)saveNewPhotoToLocalSystemAfterSendingSuccess:(UIImage *)newImage {
     //保存图片

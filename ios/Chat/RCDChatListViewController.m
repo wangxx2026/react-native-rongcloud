@@ -71,6 +71,7 @@ alpha:1.0]
     self.isClick = YES;
     RCUserInfo *groupNotify = [[RCUserInfo alloc] initWithUserId:@"__system__" name:@"" portrait:nil];
     [[RCIM sharedRCIM] refreshUserInfoCache:groupNotify withUserId:@"__system__"];
+    [self refreshConversationTableViewIfNeeded];
 }
 
 - (void)dealloc {
@@ -142,6 +143,8 @@ alpha:1.0]
     
     //调用父类刷新未读消息数
     [super didReceiveMessageNotification:notification];
+    [blockSelf_ refreshConversationTableViewIfNeeded];
+    [blockSelf_ notifyUpdateUnreadMessageCount];
 }
 
 #pragma mark - target action
