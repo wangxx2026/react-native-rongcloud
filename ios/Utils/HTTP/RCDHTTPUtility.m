@@ -12,7 +12,7 @@
 #import "RCDCommonDefine.h"
 #define HTTP_SUCCESS 0
 
-NSString *const BASE_URL = @"http://api-test.lingting.ltd/v1/";
+NSString *const BASE_URL = @"https://api.lingting.ltd/v1/";
 
 static AFHTTPSessionManager *manager;
 

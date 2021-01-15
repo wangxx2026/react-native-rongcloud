@@ -61,7 +61,7 @@ static const char *kRealTimeLocationStatusViewKey = "kRealTimeLocationStatusView
     self.displayUserNameInCell = NO;
     [self notifyUpdateUnreadMessageCount];
 
-    [self addNotifications];
+//    [self addNotifications];
     //    [self addToolbarItems];
     //    self.enableContinuousReadUnreadVoice = YES;//开启语音连读功能
 
@@ -117,7 +117,7 @@ static const char *kRealTimeLocationStatusViewKey = "kRealTimeLocationStatusView
 
 - (void)dealloc {
     NSLog(@"%s", __func__);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)inputTextView:(UITextView *)inputTextView

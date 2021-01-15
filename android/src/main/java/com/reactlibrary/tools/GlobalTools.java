@@ -19,7 +19,7 @@ public class GlobalTools {
 
     public static UserInfoAPI getUserInfoService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api-test.lingting.ltd/v1/")
+                .baseUrl("https://api.lingting.ltd/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
