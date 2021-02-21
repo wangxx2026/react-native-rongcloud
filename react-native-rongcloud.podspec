@@ -25,6 +25,7 @@ Pod::Spec.new do |s|
   # ...
   s.dependency 'RongCloudIM/IMKit', '~> 4.0.3.3'
   s.dependency 'RongCloudIM/IMLib', '~> 4.0.3.3'
-  s.dependency 'AFNetworking', '~> 4.0'
+  s.dependency 'AFNetworking', :subspecs => ['Serialization', 'Security', 'NSURLSession', 'Reachability'] #此处以Serialization, Security, NSURLSession为例
+
 end
 
