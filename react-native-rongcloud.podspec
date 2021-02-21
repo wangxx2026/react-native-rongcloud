@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
   # ...
   s.dependency 'RongCloudIM/IMKit', '~> 4.0.3.3'
   s.dependency 'RongCloudIM/IMLib', '~> 4.0.3.3'
-  s.dependency 'AFNetworking', '3.2.1'
+  s.dependency 'AFNetworking', '~> 4.0'
 end
 
