@@ -8,7 +8,7 @@
 
 #import "RCDHTTPUtility.h"
 #import "RCDCommonString.h"
-#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import "RCDCommonDefine.h"
 #define HTTP_SUCCESS 0
 
