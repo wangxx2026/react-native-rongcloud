@@ -1,7 +1,7 @@
 {
-  "name": "react-native-rongcloud",
+  "name": "react-native-rongcloud-wangxx2026",
   "title": "React Native Rongcloud",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "description": "rongcloud im for React-Native",
   "main": "index.js",
   "files": [
@@ -16,19 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:a6051529/react-native-rongcloud.git",
-    "baseUrl": "https://github.com/a6051529/react-native-rongcloud"
+    "url": "git+ssh://git@github.com/wangxx2026/react-native-rongcloud.git",
+    "baseUrl": "https://github.com/wangxx2026/react-native-rongcloud.git"
   },
   "keywords": [
     "react-native"
   ],
-  "author": {
-    "name": "hinjin",
-    "email": "a6051529@163.com"
-  },
+  "author": "wangxx2026 <wangxx2026@126.com>",
   "license": "MIT",
   "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
   "peerDependencies": {
     "react": "^16.8.1",
     "react-native": ">=0.60.0-rc.0 <1.0.x"
@@ -36,5 +32,9 @@
   "devDependencies": {
     "react": "^16.9.0",
     "react-native": "^0.61.5"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wangxx2026/react-native-rongcloud/issues"
+  },
+  "homepage": "https://github.com/wangxx2026/react-native-rongcloud#readme"
 }
