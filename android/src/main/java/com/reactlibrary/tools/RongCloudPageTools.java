@@ -107,7 +107,7 @@ public class RongCloudPageTools {
         FragmentManager manager = ((ReactActivity) activity).getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragmentcontainer, conversationListFragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     private View findIMPlaceholder(ViewGroup parent) {
