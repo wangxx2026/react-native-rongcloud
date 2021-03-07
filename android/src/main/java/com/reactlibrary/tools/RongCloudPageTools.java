@@ -1,6 +1,7 @@
 package com.reactlibrary.tools;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +68,13 @@ public class RongCloudPageTools {
                 realContainer.setLayoutParams(new FrameLayout.LayoutParams(imPlaceholder.getWidth(),
                         imPlaceholder.getHeight()));
                 ((FrameLayout) content).addView(realContainer);
+                Resources resources = activity.getResources();
+                int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+                int height = resources.getDimensionPixelSize(resourceId);
                 int[] locOnWindow = new int[2];
                 imPlaceholder.getLocationInWindow(locOnWindow);
                 realContainer.setX(locOnWindow[0]);
-                realContainer.setY(locOnWindow[1]);
+                realContainer.setY(locOnWindow[1] - height);
                 showMessage(activity);
             }
         });
