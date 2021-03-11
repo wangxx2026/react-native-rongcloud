@@ -39,7 +39,7 @@ public class RongcloudManager extends SimpleViewManager<View> {
             public void run() {
                 RongCloudPageTools.getInstance().addFragmentContainer(mContext.getCurrentActivity());
             }
-        }, 1000);
+        }, 10);
         return placeholder;
     }
 }
