@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.reactlibrary.server.UserInfoAPI;
+import com.reactlibrary.RongcloudModule;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,7 +20,7 @@ public class GlobalTools {
 
     public static UserInfoAPI getUserInfoService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.lingting.ltd/v1/")
+                .baseUrl(RongcloudModule.ltHost)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

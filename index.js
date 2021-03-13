@@ -8,8 +8,8 @@ const RongcloudManager = requireNativeComponent(Platform.OS == 'ios' ? 'Conversa
 
 export default RongcloudManager;
 
-export const initIMSDK = (appId) => {
-    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.initIMSDK && NativeModules.RongcloudModule.initIMSDK(appId);
+export const initIMSDK = (appId, host) => {
+    return NativeModules.RongcloudModule && NativeModules.RongcloudModule.initIMSDK && NativeModules.RongcloudModule.initIMSDK(appId, host);
 }
 
 export const showHideContainer = (isShow) => {

@@ -14,23 +14,26 @@
 // RongcloudModule.h
 #import "RongcloudModule.h"
 
+NSString * ltHost;
+
 @implementation RongcloudModule
 
 // To export a module named CalendarManager
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(initIMSDK:(NSString *)appId)
+RCT_EXPORT_METHOD(initIMSDK:(NSString *)appId ltHostReq:(NSString *)ltHostReq)
 {
-  
+
     [[RCIM sharedRCIM] initWithAppKey:appId];
     [RCIM sharedRCIM].connectionStatusDelegate = self;
     [RCIM sharedRCIM].receiveMessageDelegate = self;
     [RCIM sharedRCIM].userInfoDataSource = self;
+    ltHost = ltHostReq;
 
 }
 
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status{
-    
+
 }
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
@@ -73,7 +76,7 @@ RCT_EXPORT_METHOD(logoutIM){
 RCT_EXPORT_METHOD(getConversationList)
 {
     NSArray *conversationList = [[RCIMClient sharedRCIMClient] getConversationList:@[@(ConversationType_PRIVATE)]];
-    
+
 }
 
 RCT_EXPORT_METHOD(showHideContainer:(BOOL)isShow){

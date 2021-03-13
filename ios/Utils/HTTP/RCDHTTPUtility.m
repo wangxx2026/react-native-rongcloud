@@ -10,6 +10,8 @@
 #import "RCDCommonString.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "RCDCommonDefine.h"
+#import "RongcloudModule.h"
+
 #define HTTP_SUCCESS 0
 
 NSString *const BASE_URL = @"https://api.lingting.ltd/v1/";
@@ -43,7 +45,7 @@ static AFHTTPSessionManager *manager;
                      response:(void (^)(RCDHTTPResult *))responseBlock {
     AFHTTPSessionManager *manager = [RCDHTTPUtility sharedHTTPManager];
     URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [BASE_URL stringByAppendingPathComponent:URLString];
+    NSString *url = [ltHost stringByAppendingPathComponent:URLString];
 
     switch (method) {
     case HTTPMethodGet: {

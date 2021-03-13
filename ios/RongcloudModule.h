@@ -15,6 +15,8 @@
 #import <React/RCTBridgeModule.h>
 #import "RCDChatViewController.h"
 
+extern NSString * ltHost;
+
 @interface RongcloudModule : NSObject <RCTBridgeModule>
 
 

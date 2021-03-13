@@ -35,6 +35,7 @@ import io.rong.imlib.model.UserInfo;
  */
 public class RongcloudModule extends ReactContextBaseJavaModule {
 
+    public static String ltHost;
     public RongcloudModule(@Nullable ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -46,8 +47,9 @@ public class RongcloudModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void initIMSDK(String appKey){
+    public void initIMSDK(String appKey, String ltHost){
         RongIM.init(getReactApplicationContext(), appKey);
+        RongcloudModule.ltHost = ltHost;
     }
 
     @ReactMethod
