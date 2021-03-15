@@ -23,13 +23,11 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(initIMSDK:(NSString *)appId ltHostReq:(NSString *)ltHostReq)
 {
-
+    ltHost = ltHostReq;
     [[RCIM sharedRCIM] initWithAppKey:appId];
     [RCIM sharedRCIM].connectionStatusDelegate = self;
     [RCIM sharedRCIM].receiveMessageDelegate = self;
     [RCIM sharedRCIM].userInfoDataSource = self;
-    ltHost = ltHostReq;
-
 }
 
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status{
