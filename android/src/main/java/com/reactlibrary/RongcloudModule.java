@@ -48,8 +48,8 @@ public class RongcloudModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void initIMSDK(String appKey, String ltHost){
-        RongIM.init(getReactApplicationContext(), appKey);
         RongcloudModule.ltHost = ltHost;
+        RongIM.init(getReactApplicationContext(), appKey);
     }
 
     @ReactMethod
