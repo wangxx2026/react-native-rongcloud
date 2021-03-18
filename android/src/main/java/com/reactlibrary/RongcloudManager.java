@@ -34,12 +34,7 @@ public class RongcloudManager extends SimpleViewManager<View> {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         placeholder.setLayoutParams(params);
-        new Timer("placeholer_timer").schedule(new TimerTask() {
-            @Override
-            public void run() {
-                RongCloudPageTools.getInstance().addFragmentContainer(mContext.getCurrentActivity());
-            }
-        }, 10);
+        RongCloudPageTools.getInstance().addFragmentContainer(mContext.getCurrentActivity());
         return placeholder;
     }
 }
