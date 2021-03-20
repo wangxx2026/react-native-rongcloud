@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 
 import androidx.lifecycle.LiveData;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableMap;
 import com.google.gson.Gson;
 import com.reactlibrary.R;
 import com.reactlibrary.bean.IMUserInfo;
@@ -67,9 +69,11 @@ public class RongCloudTools {
             public void onSuccess(String s) {
                 //连接成功
                 Log.i(TAG, "onSuccess: " + s);
-                RongCloudPageTools.getInstance().showMessage(activity);
+                //RongCloudPageTools.getInstance().showMessage(activity);
+                WritableMap map = Arguments.createMap();
+                map.putString("msg", s);
                 if (promise != null){
-                    promise.resolve(s);
+                    promise.resolve(map);
                 }
             }
 
